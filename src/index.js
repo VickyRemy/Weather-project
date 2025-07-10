@@ -12,9 +12,14 @@ function updateWeather(response){
     humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
     windSpeedElement.innerHTML = `${response.data.wind.speed}km/hr`;
     timeElement.innerHTML = formatDate(date);
+    let iconElement = document.querySelector("#icon")
+
+
+     iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
     
     temperatureElement.innerHTML = Math.round(temperature)
 }
+
 function formatDate(date) {
     let hours= date.getHours();
     let minutes= date.getMinutes();
@@ -35,6 +40,7 @@ function formatDate(date) {
 
     return `${day} ${hours}:${minutes}`
 }
+
 function searchCity(city) {
     let apiKey ="09bdf26t323b4a9f4410fdob3dbedc7c";
     let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
